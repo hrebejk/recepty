@@ -1,5 +1,7 @@
 (function () {
 
+    var ALARM = new Audio( "naan/alarm.mp3" );
+
     function rNOP( value ) {
         return value;
     }
@@ -136,7 +138,7 @@
             return new Date( this.remains() * 1000 ).getHours() - 1;
         }, this );
 
-        this.audio = new Audio( "naan/alarm.mp3" );
+        this.audio = ALARM;
 
         this.done = ko.observable( false );
 
@@ -248,7 +250,7 @@
 
             td : new Step(),
             pec : new Step(),
-            pec_timer : new Timer( 0, 8, 0, "8 minut" )
+            pec_timer : new Timer( 0, 0, 8, "8 minut" )
         };
 
         this.postup.k = new Step( this.postup.k_mleko, this.postup.k_drozdi, this.postup.k_cukr, this.postup.k_timer );
