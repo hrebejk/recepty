@@ -142,10 +142,10 @@
 
         this.icon = ko.pureComputed( function() {
             if ( this.remains() <= 0  ) {
-                return 'alarm_off';
+                return '&#xE855;'; // 'alarm_off';
             }
             else {
-                return 'alarm';
+                return '&#xE855;'; // 'alarm';
             }
 
         }, this );

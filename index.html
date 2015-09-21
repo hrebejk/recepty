@@ -172,7 +172,7 @@
             <span class="checkText"
                  data-bind="click: function() { click(); },
                  css : { 'doneText' : done }">
-                <i class="material-icons md-18 text-icon" data-bind="text: icon"></i>
+                <i class="material-icons md-18 text-icon" data-bind="html: icon"></i>
                 <span data-bind="if: $data.timer() === false && alterText !== undefined">
                     <span data-bind="text: alterText"></span>
                 </span>
@@ -186,7 +186,7 @@
             <span class="checkText"
                  data-bind="click: function() { click(); },
                  css : { 'doneText' : done }">
-                <i class="material-icons md-18 text-icon" data-bind="text: icon"></i>
+                <i class="material-icons md-18 text-icon" data-bind="html: icon"></i>
                 <span data-bind="if: $data.timer() === false && alterText !== undefined">
                     <span data-bind="text: alterText"></span>
                 </span>
@@ -200,9 +200,6 @@
         <dt class="step" data-bind="css : { done : checked }, click: function() { checked( !checked() ) } " style="margin: 4px 0;">
                 <span data-bind="css: { 'ingredient-checked' : checked }" style="vertical-align: top; height: 100%">
                 <span data-bind="text: human"></span>&nbsp;<span data-bind="text: unitAndText"></span></span>
-                <!-- i data-bind="visible: checked"
-                   class="material-icons md-18"
-                   style="font-weight: bold; color: #8BC34A; vertical-align: middle">checked</i -->
             </dt>
         </script>
 
