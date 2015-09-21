@@ -244,7 +244,7 @@
 
             t3 : new Step(),
 
-            kyn_timer : new Timer( 1, 30, 0, "1 az 1 a \u00BD hodiny" ),
+            kyn_timer : new Timer( 1, 30, 0, "1 až 1 a \u00BD hodiny" ),
 
             td : new Step(),
             pec : new Step(),
