@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Indický chléb - Naan</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js" type="text/javascript"></script>
+        <script src="naan/naan-model.js" type="text/javascript"></script>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,500,300,100&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel='stylesheet' type='text/css'>
+        <link href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.light_blue-orange.min.css" rel='stylesheet' type='text/css'>
+        <link href="naan/naan.css" rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+    <header style="background-color: ">
+        <!-- div class="header-wrapper">
+          <div class="header-title" -->
+        <h1 class="section-title" style="margin-top: 0;">Naan<!-- span style="font-size: 0.52em;"> - indicky chleb</span--></h1>
+          <!-- /div>
+        </div -->
+    </header>
+    <main>
+        <div>
+            Množství
+            <div class="mdl-textfield mdl-js-textfield" style="width: 2.8em;">
+            <input data-bind="value: target, valueUpdate: 'keyup'"
+            class="mdl-textfield__input"
+            type="text" pattern="-?[0-9]*(\.[0-9]+)?"
+            id="sample2"
+            style="text-align: center; font-size: 32px; font-family: 'Roboto'; font-weight: 300; color: #03a9f4" />
+            <label class="mdl-textfield__label" for="sample2"></label>
+            <span class="mdl-textfield__error">Cislo!</span>
+        </div>&nbsp;kusů
+        </div>
+        <!-- div>
+            <span>Mozstvi: </span><input style="display: inline-block" class="mdl-slider mdl-js-slider" type="range" min="3" max="30" tabindex="0" data-bind="value: target"/>
+        </div -->
+
+        <h2 data-bind="click: function() { igVisible( !igVisible() ); }">Ingredience<span style="padding-left: 1em;"></span><span class="triangle"></span></h2>
+
+        <div class="collapsible" style="max-height: 30em;" data-bind="style: { 'max-height' : igVisible() ? '30em' : '0' }">
+            Na <div class="mdl-textfield mdl-js-textfield" style="width: 2em;">
+            <input data-bind="value: target, valueUpdate: 'keyup'"
+            class="mdl-textfield__input"
+            type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2"
+            style="text-align: center; font-family: 'Roboto'; font-weight: 300; color: #03a9f4"/>
+            <label class="mdl-textfield__label" for="sample2"></label>
+            <span class="mdl-textfield__error">Cislo!</span>
+        </div> kusů indického chleba naan budeme potřebovat:
+
+        <dl class="steps"
+            data-bind="template: { name: 'ingredient-template', foreach: ingredients }">
+        </dl>
+
+        </div>
+
+
+        <h2 data-bind="click: function() { pVisible( !pVisible() ); }">Postup<span style="padding-left: 1em;"></span><span class="triangle"></span></h2>
+        <div class="collapsible" data-bind="style: { 'max-height' : pVisible() ? '60em' : '0' }">
+        <dl class="steps">
+            <dt data-bind="css : { done : postup.k.done }, click: function() { postup.k.toggle() }">
+            <div data-bind="click: noBubble">
+                Kvásek: Do
+                <span class="checkText"
+                      data-bind="click: postup.k_mleko.toggle,
+                      css : { 'doneText' : postup.k_mleko.done }">
+                    <!-- i class="material-icons md-18" style="font-size: 20px; vertical-align: text-bottom; color: #DEDEDE">check</i -->
+                    <span data-bind="text: ingredientsMap.mleko.human"></span> ml vlažného mléka
+                </span>
+                vmíchame
+                <span class="checkText"
+                      data-bind="click: postup.k_drozdi.toggle,
+                      css : { 'doneText' : postup.k_drozdi.done }">
+                        <span data-bind="text: ingredientsMap.drozdi.human"></span> g droždí
+                </span> a
+                <span class="checkText"
+                      data-bind="click: postup.k_cukr.toggle,
+                      css : { 'doneText' : postup.k_cukr.done }">
+                    <span data-bind="text: igShared.cukr_1.human"></span> lžičku cukru.<br>
+                </span>
+
+                Necháme <span data-bind="template: { name: 'timer-template', data: postup.k_timer }"></span>
+                odpočinout a připravíme si zbytek směsi na těsto.
+            <div>
+             </dt>
+
+
+            <dt data-bind="css : { done : postup.t.done }, click: function() { postup.t.toggle() }">
+            <div data-bind="click: noBubble">
+            Ve větší míse dobře promícháme
+                <span class="checkText"
+                      data-bind="click: postup.t_mouka.toggle,
+                      css : { 'doneText' : postup.t_mouka.done }">
+                    <span data-bind="text: ingredientsMap.mouka.human"></span> g hladké mouky</span>,
+                <span class="checkText"
+                  data-bind="click: postup.t_cukr.toggle,
+                  css : { 'doneText' : postup.t_cukr.done }">
+                <span data-bind="text: igShared.cukr_2.human"></span> lžičky cukru</span>,
+                <span class="checkText"
+                  data-bind="click: postup.t_sul.toggle,
+                  css : { 'doneText' : postup.t_sul.done }">
+                <span data-bind="text: ingredientsMap.sul.human"></span> lžičky soli
+                </span> a
+                <span class="checkText"
+                  data-bind="click: postup.t_pp.toggle,
+                  css : { 'doneText' : postup.t_pp.done }">
+                <span data-bind="text: ingredientsMap.pp.human"></span> lžičku prášku do pečiva
+                </span>
+            </div>
+            </dt>
+
+            <dt data-bind="css : { done : postup.t2.done }, click: function() { postup.t2.toggle() }">
+            <div data-bind="click: noBubble">
+            Přidáme
+                <span class="checkText"
+                      data-bind="click: postup.t2_vejce.toggle,
+                      css : { 'doneText' : postup.t2_vejce.done }">
+                    <span data-bind="text: ingredientsMap.vejce.human"></span> vejce</span>,
+                <span class="checkText"
+                  data-bind="click: postup.t2_maslo.toggle,
+                  css : { 'doneText' : postup.t2_maslo.done }">
+                <span data-bind="text: ingredientsMap.maslo.human"></span> lžíce rozpuštěného másla</span>,
+                <span class="checkText"
+                  data-bind="click: postup.t2_jogurt.toggle,
+                  css : { 'doneText' : postup.t2_jogurt.done }">
+                <span data-bind="text: ingredientsMap.jogurt.human"></span> ml bílého jogurtu
+                </span> a
+                <span class="checkText"
+                  data-bind="click: postup.t2_kvasek.toggle,
+                  css : { 'doneText' : postup.t2_kvasek.done }">
+                kvásek.
+                </span>
+            </div>
+            </dt>
+
+            <dt data-bind="css : { done : postup.t3.done }, click: function() { postup.t3.toggle() }">
+            <div>
+                Vše dobře promísíme a hnětením vypracujeme vláčné těsto.
+            </div>
+            </dt>
+
+            <dt data-bind="css : { done : postup.kyn.done }, click: function() { postup.kyn.toggle() }">
+            <div data-bind="click: noBubble">
+                Těsto necháme na teplém místě <span data-bind="template: { name: 'timer2-template', data: postup.kyn_timer }"></span>
+                vykynout.
+            </div>
+            </dt>
+
+            <dt data-bind="css : { done : postup.td.done }, click: function() { postup.td.toggle() }">
+            <div>
+                Těsto rozdělíme na <span data-bind="text: target"></span> kusů a rozválíme na asi 3mm tenké placičky.
+            </div>
+            </dt>
+
+            <dt data-bind="css : { done : postup.pec.done }, click: function() { postup.pec.toggle() }">
+            <div>
+                Chleby dáme na plech s papírem na pečení a umístíme do horní
+                části trouby předehřáté na 180&#8451;. Máme-li můžeme použít horký vzduch nebo gril.
+                Pečeme do zlatova, obrátíme a dopečeme z druhé strany. <span data-bind="click: noBubble, template: { name: 'timer-template', data: postup.pec_timer }"></span>
+            </div>
+            </dt>
+
+        </dl>
+
+        </div>
+
+                <div style="height: 140px">&nbsp;</div>
+    </main>
+        <script type="text/html" id="timer-template">
+            <span class="checkText"
+                 data-bind="click: function() { click(); },
+                 css : { 'doneText' : done }">
+                <i class="material-icons md-18 text-icon" data-bind="text: icon"></i>
+                <span data-bind="if: $data.timer() === false && alterText !== undefined">
+                    <span data-bind="text: alterText"></span>
+                </span>
+                <span data-bind="if: $data.timer() !== false || alterText === undefined">
+                    <span data-bind="text: mTxt"></span>:<span data-bind="text: sTxt" style="font-weight: 300;"></span>
+                </span>
+            </span>
+        </script>
+
+        <script type="text/html" id="timer2-template">
+            <span class="checkText"
+                 data-bind="click: function() { click(); },
+                 css : { 'doneText' : done }">
+                <i class="material-icons md-18 text-icon" data-bind="text: icon"></i>
+                <span data-bind="if: $data.timer() === false && alterText !== undefined">
+                    <span data-bind="text: alterText"></span>
+                </span>
+                <span data-bind="if: $data.timer() !== false">
+                    <span data-bind="text: hTxt"></span>:<span data-bind="text: mTxt"></span>:<span data-bind="text: sTxt" style="font-weight: 300;"></span>
+                </span>
+            </span>
+        </script>
+
+        <script type="text/html" id="ingredient-template">
+        <dt class="step" data-bind="css : { done : checked }, click: function() { checked( !checked() ) } " style="margin: 4px 0;">
+                <span data-bind="css: { 'ingredient-checked' : checked }" style="vertical-align: top; height: 100%">
+                <span data-bind="text: human"></span>&nbsp;<span data-bind="text: unitAndText"></span></span>
+                <!-- i data-bind="visible: checked"
+                   class="material-icons md-18"
+                   style="font-weight: bold; color: #8BC34A; vertical-align: middle">checked</i -->
+            </dt>
+        </script>
+
+        <script type="text/javascript">
+            window.onload = function() { ko.applyBindings( new NaanModel()); };
+        </script>
+
+    </body>
+
+
+</html>
