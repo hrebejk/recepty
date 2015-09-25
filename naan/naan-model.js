@@ -32,7 +32,10 @@
     function rSmallBig( value ) {
         var rem = value % 1;
 
-        if ( value < 1 ) {
+        if ( value <= 0.002 ) {
+            return 0;
+        }
+        else if ( value < 1 ) {
             if ( rem < 0.6 ) {
                 return 1 + " mensi";
             }
