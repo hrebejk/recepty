@@ -95,15 +95,9 @@
         else {
             this.steps = arguments;
             this.done = ko.pureComputed( function() {
-                var d = true;
-                // We realy need to iterate stopping too soon would not
-                // make ko listen to the observable
-                _.each( this.steps, function(i) {
-                    if ( i.done() === false ) {
-                        d = false;
-                    };
-                } );
-                return d;
+                return !_.find( this.steps, function( s ) {
+                    return !s.done();
+                });
             }, this );
 
             this.toggle = function() {
