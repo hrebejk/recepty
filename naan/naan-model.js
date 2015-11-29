@@ -37,7 +37,7 @@
         }
         else if ( value < 1 ) {
             if ( rem < 0.6 ) {
-                return 1 + " mensi";
+                return 1 + " menší";
             }
             else {
                 return 1;
